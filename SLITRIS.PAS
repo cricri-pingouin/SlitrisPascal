@@ -30,13 +30,13 @@ Var   Font                   : File;
       Cheat                  : boolean;
 
 Const pieces : array [1..8] of Tab_piece
-{ Á } = ( ( (false,true,false,false) ,(true,true,true,false)   ,(false,false,false,false),(false,false,false,false) ) ,
+{ ï¿½ } = ( ( (false,true,false,false) ,(true,true,true,false)   ,(false,false,false,false),(false,false,false,false) ) ,
 { S }     ( (false,true,true,false)  ,(true,true,false,false)  ,(false,false,false,false),(false,false,false,false) ) ,
 { Z }     ( (true,true,false,false)  ,(false,true,true,false)  ,(false,false,false,false),(false,false,false,false) ) ,
-{ Ú }     ( (true,true,true,false)   ,(true,false,false,false) ,(false,false,false,false),(false,false,false,false) ) ,
-{ ¿ }     ( (true,true,true,false)   ,(false,false,true,false) ,(false,false,false,false),(false,false,false,false) ) ,
-{ Ä }     ( (false,false,false,false),(true,true,true,true)    ,(false,false,false,false),(false,false,false,false) ) ,
-{ÿş }     ( (true,true,false,false)  ,(true,true,false,false)  ,(false,false,false,false),(false,false,false,false) ) ,
+{ ï¿½ }     ( (true,true,true,false)   ,(true,false,false,false) ,(false,false,false,false),(false,false,false,false) ) ,
+{ ï¿½ }     ( (true,true,true,false)   ,(false,false,true,false) ,(false,false,false,false),(false,false,false,false) ) ,
+{ ï¿½ }     ( (false,false,false,false),(true,true,true,true)    ,(false,false,false,false),(false,false,false,false) ) ,
+{ï¿½ï¿½ }     ( (true,true,false,false)  ,(true,true,false,false)  ,(false,false,false,false),(false,false,false,false) ) ,
 { vide }  ( (false,false,false,false),(false,false,false,false),(false,false,false,false),(false,false,false,false) ) );
 
       GX : array [1..7] of integer
@@ -46,7 +46,7 @@ Const pieces : array [1..8] of Tab_piece
 Procedure INIT_GRAPH;
 var driver,mode,err : Integer;
 begin
-{ Initialisation systŠme graphique }
+{ Initialisation systï¿½me graphique }
  Clrscr;
  DetectGraph(Driver,Mode);
  if (Driver<>VGA) or (Mode<>VGAHi) then
@@ -90,7 +90,7 @@ Begin
     Halt(1);
   end;
   Close(Font);
-{ Cr‚ation bloc }
+{ Crï¿½ation bloc }
  setcolor(lightblue);
  rectangle(10,10,30,30);
  rectangle(13,13,27,27);
@@ -107,7 +107,7 @@ Begin
  setcolor(blue);
  line(10,30,30,30);
  line(30,30,30,10);
-{ Cr‚ation fond }
+{ Crï¿½ation fond }
  setcolor(Darkgray);
  rectangle(31,11,50,30);
  SetFillStyle(1,DarkGray);
@@ -121,7 +121,7 @@ Begin
  circle(43,18,1);
  Setcolor(red);
  Arc(40,21,200,340,4);
-{ Cr‚ation goutte }
+{ Crï¿½ation goutte }
  setcolor(red);
  rectangle(60,10,90,40);
  Arc(75,40,180,360,15);
@@ -132,7 +132,7 @@ Begin
  Floodfill(61,11,red);
  SetfillStyle(1,lightgray);
  FloodFill(69,44,red);
-{ Cr‚ation flŠche }
+{ Crï¿½ation flï¿½che }
  setcolor(lightblue);
  Line(140,135,148,140);
  Line(148,140,140,145);
@@ -144,7 +144,7 @@ Begin
  Line(160,150,160,145);
  SetFillStyle(1,lightblue);
  FloodFill(146,137,LightBlue);
-{ Stockage en m‚moire des blocs }
+{ Stockage en mï¿½moire des blocs }
  Size := ImageSize(11, 11, 30, 30);
  GetMem(Bloc, Size);
  GetImage(11, 11, 30, 30, Bloc^);
@@ -335,7 +335,7 @@ end;
 
 Procedure INIT_ECRAN;
 Begin
-{ Cr‚ation du cadre }
+{ Crï¿½ation du cadre }
  ClearViewPort;
  setcolor(lightgreen);
  line(200,0,440,0);
@@ -495,7 +495,7 @@ Procedure TOURNE;
 Var piece_temp : tab_piece;
 Begin
  ok:=true;
-{ Test si la piŠce n'est pas un carr‚ }
+{ Test si la piï¿½ce n'est pas un carrï¿½ }
  If num_piece<>7 then
  { Simulation de rotation }
    Begin
@@ -529,7 +529,7 @@ Begin
      For a:=1 to 4 do
        For b:=1 to 4 do
          If (piece_temp[a,b]) and (plateau[posX+b-1,posY+a-1]) then ok:=false;
-   { Si ok on valide la piŠce tourn‚e }
+   { Si ok on valide la piï¿½ce tournï¿½e }
      If ok then
        Begin
          Efface_bloc;
@@ -559,12 +559,12 @@ Procedure VIDE_LIGNES;
 Var c,somme,l : byte;
 Begin
  l:=0;
-{ Test de la premiŠre ligne }
+{ Test de la premiï¿½re ligne }
  somme:=0;
  For a:=2 to 11 do if plateau[2,a] then inc(somme);
  if somme=10 then  { si elle est pleine }
    begin
-     inc(l);       { on incr‚mente les lignes lignes }
+     inc(l);       { on incrï¿½mente les lignes lignes }
      for a:=2 to 11 do plateau [2,a]:=false; { on la vide }
      Setcolor(white);
      Rectangle(220,20,419,39);
@@ -592,7 +592,7 @@ Begin
          Setcolor(white);
          Rectangle(220,(a-l+1)*20-1,419,(a-l)*20);
          FloodFill(230,(a-l)*20+10,white);
-         inc(a);      { Si il y a une autre ligne … vider au dessus, elle est d‚cal‚e sur la ligne courante }
+         inc(a);      { Si il y a une autre ligne ï¿½ vider au dessus, elle est dï¿½calï¿½e sur la ligne courante }
          if son then  { Signal d'une ligne pleine }
            begin
              sound(440);
@@ -601,9 +601,9 @@ Begin
            end;
        end;
    end;
-{ Mise … jour du score }
-{ Note : on r‚utilise SIZE comme incr‚ment pour ‚conomie de m‚moire }
- Case l of 0 : size:=10;   { Bloc plac‚ }
+{ Mise ï¿½ jour du score }
+{ Note : on rï¿½utilise SIZE comme incrï¿½ment pour ï¿½conomie de mï¿½moire }
+ Case l of 0 : size:=10;   { Bloc placï¿½ }
            1 : size:=110;  { Bouuuh  : simple }
            2 : size:=310;  { Bof     : double }
            3 : size:=610;  { Pas mal : triple }
@@ -621,7 +621,7 @@ Begin
        end;
      Affiche_niveau;
    end;
- inc(lignes,l);  { Mise … jour lignes }
+ inc(lignes,l);  { Mise ï¿½ jour lignes }
  if l<>0 then Affiche_lignes;
  num_piece:=num_prochain;  { Test partie finie }
  piece:=pieces[num_piece];
@@ -631,7 +631,7 @@ Begin
               for b:=1 to 9 do putimage(210+b*20,449,noir^,normalPut);
               Cheat:=false;
             End
-          else inc(score,size); { Mise … jour score }
+          else inc(score,size); { Mise ï¿½ jour score }
 End;
 
 Procedure SANG(N:byte);
@@ -670,10 +670,10 @@ Begin
  perdu:=false;
  randomize;
  num_prochain:=random(7)+1;
-{ Initialisation ‚cran graphique }
+{ Initialisation ï¿½cran graphique }
  Init_graph;
  Init_ecran;
-{ Musique d‚but }
+{ Musique dï¿½but }
  Vide_Buffer_Clavier;
  s(247,400);
  s(220,400);
@@ -686,7 +686,7 @@ Begin
  s(196,200);
  s(185,200);
  s(165,400);
-{ D‚but partie }
+{ Dï¿½but partie }
 If keypressed then
   Begin
     Touche:=readkey;
@@ -745,7 +745,7 @@ Vide_buffer_clavier;
      For b:=1 to 4 do
        If (piece[a,b]) then plateau[posX+b-1,posY+a-1]:=true;
    Vide_Lignes;
-   Vide_Buffer_Clavier; { Pour ‚viter de bouger la piŠce qui va arriver }
+   Vide_Buffer_Clavier; { Pour ï¿½viter de bouger la piï¿½ce qui va arriver }
  Until (perdu) or (score>=100000);
  Setcolor(LightRed);
  If score>=100000 then
@@ -843,9 +843,9 @@ Curseur(False);
 ClrScr;
 TextColor(Magenta);
 Writeln;
-Writeln(' ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»');
-Writeln(' º    History will remember    ...    º');
-Writeln(' ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼');
+Writeln(' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»');
+Writeln(' ï¿½    History will remember    ...    ï¿½');
+Writeln(' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼');
 TextColor(Blue);
 Writeln;
 Writeln;
@@ -878,9 +878,9 @@ Begin
         ClrScr;
         TextColor(Magenta);
         Writeln;
-        Writeln(' ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»');
-        Writeln(' º    CONGRATULATIONS ! Nice job.     º');
-        Writeln(' ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼');
+        Writeln(' =====================================');
+        Writeln(' =    CONGRATULATIONS ! Nice job.    =');
+        Writeln(' =====================================');
         S(73,125 );     S(73,125);     S(73,125);
         S(98,400);      S(98,400);     S(110,400);
         S(110,400);     S(147,600);    S(123,200);
@@ -949,9 +949,9 @@ Curseur(False);
 ClrScr;
 TextColor(Magenta);
 Writeln;
-Writeln(' ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»');
-Writeln(' º            Parameters              º');
-Writeln(' ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼');
+Writeln(' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»');
+Writeln(' ï¿½            Parameters              ï¿½');
+Writeln(' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼');
 Writeln;
 TextColor(Blue);
 Writeln('  Starting level   (1 to 10) ?');
@@ -1041,9 +1041,9 @@ Begin
                   2 : Option:=54;   { Droite }
                   3 : Option:=53;   { Tourne }
                   4 : Option:=50;   { Bas }
-                  5 : Option:=1;    { Niveau de d‚part }
-                  6 : Option:=0;    { Hauteur de d‚part }
-                  7 : Option:=1000; { Vitesse = dur‚e DELAY }
+                  5 : Option:=1;    { Niveau de dï¿½part }
+                  6 : Option:=0;    { Hauteur de dï¿½part }
+                  7 : Option:=1000; { Vitesse = durï¿½e DELAY }
                   8 : Option:=0;    { Son : 1 actif, 0 passif }
                   9 : Option:=1;    { Prochain : 1 actif, 0 passif }
                  10 : Option:=0;    { Sens de rotation : 0 trigo, 1 horaire }
@@ -1053,7 +1053,7 @@ end;
 
 BEGIN  { Programme Principal }
 Init_Graph;
-{ Test ici pour effectuer tout accŠs disque … la suite }
+{ Test ici pour effectuer tout accï¿½s disque ï¿½ la suite }
 {$I-}
 Assign(Fichier,'SLITRIS.DAT');
 Reset(Fichier);
