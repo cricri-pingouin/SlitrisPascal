@@ -15,3 +15,4 @@ The following keys can be customised:
 - Down
 
 The game saves those parameters along with the best 10 scores, and the high score list can viewed or reset (which also resets the parameters) from the main menu.
+The game can be paused to a star field screensaver, and thhe end game animation is a bit gore!
